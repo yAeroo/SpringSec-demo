@@ -1,4 +1,4 @@
-package sv.udb.edu.SpringSecDemo;
+package com.nexus.demo.SpringSecDemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

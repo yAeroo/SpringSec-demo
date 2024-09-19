@@ -1,4 +1,4 @@
-package sv.udb.edu.SpringSecDemo;
+package com.nexus.demo.SpringSecDemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringSecDemoApplication {
 
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) {
 		SpringApplication.run(SpringSecDemoApplication.class, args);
 	}
+
 }
