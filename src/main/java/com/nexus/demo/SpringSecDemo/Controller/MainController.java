@@ -7,6 +7,7 @@ import com.nexus.demo.SpringSecDemo.Repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,7 +77,7 @@ public class MainController {
         }
 
         if(!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())){
-            bindingResult.addError(new FieldError("registerDTO", "password", "Las contraseñas no coinciden."));
+            bindingResult.addError(new FieldError("registerDTO", "confirmPassword", "Las contraseñas no coinciden."));
 
             model.addAttribute("roles", roleRepository.findAll());
             return "register";
@@ -118,4 +119,8 @@ public class MainController {
         return "register";
     }
 
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "/error/403";
+    }
 }
