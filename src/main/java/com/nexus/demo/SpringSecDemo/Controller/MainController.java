@@ -21,6 +21,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.security.Principal;
+
 @Controller
 public class MainController {
     @Autowired
@@ -34,14 +36,32 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard(Model model, Principal principal) {
+        String username = principal.getName(); // Obtiene el nombre del usuario
+        AppUser user = userRepository.findByUsername(username); // Busca el usuario en la base de datos
+
+        if (user.getRole().getName().equals("ADMIN")) {
+            model.addAttribute("username", username);
+            return "adminDashboard"; // Redirige al dashboard de administrador
+        } else {
+            model.addAttribute("username", username);
+            return "userDashboard"; // Redirige al dashboard de usuario
+        }
+    }
+
     @GetMapping("/user/dashboard")
-    public String userDashboard(){
-        return "userDashboard";
+    public String userDashboard(Model model, Principal principal) {
+        String username = principal.getName(); // Obtiene el nombre del usuario
+        model.addAttribute("username", username); // Agrega el nombre al modelo
+        return "userDashboard"; // Devuelve la vista del dashboard de usuario
     }
 
     @GetMapping("/admin/dashboard")
-    public String adminDashboard(){
-        return "adminDashboard";
+    public String adminDashboard(Model model, Principal principal) {
+        String username = principal.getName(); // Obtiene el nombre del usuario
+        model.addAttribute("username", username); // Agrega el nombre al modelo
+        return "adminDashboard"; // Devuelve la vista del dashboard de administrador
     }
 
     @GetMapping("/login")
@@ -51,6 +71,7 @@ public class MainController {
         }
         return  "login";
     }
+
 
     @GetMapping("/register")
     public String register(Model model, HttpServletRequest request){
