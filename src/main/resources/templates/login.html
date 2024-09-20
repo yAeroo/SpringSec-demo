@@ -49,7 +49,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6 border p-5">
-            <h1 class="text-center">Inicio de Sesión</h1>
+            <h1 class="text-center"><img src="https://cdn.worldvectorlogo.com/logos/spring-3.svg" class="rounded-circle border border-1 border-white" alt="Spring Logo" style="width: 3rem; height: 3rem; margin-right: 1rem; background-color: white">Inicio de Sesión</h1>
             <form th:action="@{/login}" method="post" class="mt-5">
 
                 <!-- Campo para el nombre de usuario -->
@@ -63,7 +63,11 @@
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña:</label>
                     <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+                </div>
 
+                <!-- Mensaje de error -->
+                <div th:if="${param.error}" class="alert alert-danger mb-3" role="alert">
+                    Credenciales Incorrectas
                 </div>
 
                 <!-- Botón de envío -->
@@ -74,8 +78,9 @@
 
 
             <div class="text-start mt-5">
-                <p class="mb-0">Sin cuenta? Registrate en nuestro sistema</p>
-                <a th:href="@{/register}"><button type="submit" value="Registrarse" class="btn btn-primary">Registrarse</button></a>
+                <p class="mb-0">
+                    Sin cuenta? <a th:href="@{/register}" style="color: #65a30d">Registrate</a> en nuestro sistema
+                </p>
             </div>
 
         </div>
