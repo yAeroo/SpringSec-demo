@@ -88,7 +88,7 @@
                 <div class="col-lg-6 order-lg-1 text-black" data-aos="fade-right" data-aos-delay="400">
                     <h1 class="display-4 fw-bold mb-4">Bienvenido a Spring Security!</h1>
                     <p class="lead mb-4">Desarrolla aplicaciones robustas y escalables con el poder de Spring.</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex gap-3" sec:authorize="!isAuthenticated()">
                         <a href="/login" class="btn btn-success btn-lg">Iniciar Sesión</a>
                         <a href="/register" class="btn btn-outline-dark btn-lg">Registrarse</a>
                     </div>
